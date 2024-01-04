@@ -1,15 +1,17 @@
 // npm init -y
 // npm install fastify
 // npm i sqlite3
-// npm i websocket
 // npm i ajv
-
+// npm i @fastify/websocket
 'use strict'
 const PORT = process.env.PORT || 3000;
 // const HOST = "0.0.0.0"
 
 // Require the framework and instantiate it
 const Fastify = require('fastify')()
+
+Fastify.register(require('@fastify/websocket'))
+Fastify.register(require('./app_structure/manager'))
 
 // Declare a route
 Fastify.get('/', function handler (request, reply) {
@@ -26,6 +28,7 @@ Fastify.get('/innozee', function handler (request, reply) {
 // Run the server!
 // { port: PORT, host: HOST }
 // { port: PORT}
+
 Fastify.listen({ port: PORT}, (err, address) => {
 
     if(err) {
@@ -38,3 +41,4 @@ Fastify.listen({ port: PORT}, (err, address) => {
 // use URL => http://localhost:3000/
 // use URL => http://localhost:3000/innozee
 // use URL => https://awful-dove-housecoat.cyclic.app/
+// ws use => ws://localhost:3000/room
