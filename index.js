@@ -12,9 +12,10 @@ const PORT = process.env.PORT || 3000;
 const Fastify = require('fastify')()
 
 // Declare a route
-Fastify.get('/innozee', function handler (request, reply) {
+Fastify.get('/', function handler (request, reply) {
   reply.type('application/json').code(200)
-  return { hello: 'world' }
+  reply.send({ hello: 'world' });
+  //return { hello: 'world' }
   //reply.send({ hello: 'world' })
 })
 
